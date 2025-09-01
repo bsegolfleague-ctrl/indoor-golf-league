@@ -1,10 +1,8 @@
-const API_URL = 'https://script.google.com/macros/s/AKfycbzAmcGv6DEVatJipAp_yOJ-d3SNmYach_mh_zBMJDBUvxLz1aetdeHL04aY986j3BfQ/exec';
+const API_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
 let currentRound = null;
 let selectedPlayers = [];
 
-document.addEventListener('DOMContentLoaded', () => {
-  loadLeaderboard();
-});
+document.addEventListener('DOMContentLoaded', loadLeaderboard);
 
 async function loadLeaderboard() {
   const res = await fetch(API_URL);
@@ -19,7 +17,7 @@ async function loadLeaderboard() {
     const player = players.find(p => p[0] === pid);
     if (!player) return;
     const name = player[1];
-    const strokes = row.slice(3).filter(v => v !== '').reduce((a, b) => a + Number(b), 0);
+    const strokes = row.slice(2).filter(v => v !== '').reduce((a, b) => a + Number(b), 0);
     if (!leaderboard[name]) leaderboard[name] = { rounds: 0, total: 0 };
     leaderboard[name].rounds++;
     leaderboard[name].total += strokes;
@@ -60,10 +58,10 @@ async function createRound() {
   });
   const round = await res.json();
   currentRound = round.id;
-  showPlayerSelection(round.id, holes);
+  showPlayerSelection();
 }
 
-async function showPlayerSelection(roundId, holes) {
+async function showPlayerSelection() {
   const res = await fetch(API_URL);
   const data = await res.json();
   const players = data.players.slice(1);
@@ -72,19 +70,20 @@ async function showPlayerSelection(roundId, holes) {
   players.forEach(p => {
     html += `<label><input type="checkbox" value="${p[0]}"> ${p[1]}</label><br>`;
   });
-  html += `<button onclick="startRound(${holes})">Start Round</button>`;
+  html += `<button onclick="startRound()">Start Round</button>`;
   document.getElementById('modal-body').innerHTML = html;
 }
 
-function startRound(holes) {
+function startRound() {
   const checkboxes = document.querySelectorAll('#modal-body input[type="checkbox"]:checked');
   if (checkboxes.length === 0) return alert('Select at least one player');
 
   selectedPlayers = Array.from(checkboxes).map(cb => cb.value);
 
   let html = `<h3>Scorecard</h3><table><tr><th>Hole</th>`;
+  const holes = 9; // or dynamically from round info
   for (let h = 1; h <= holes; h++) {
-    html += `<th>H${h}<br><input type="number" id="par-${h}" placeholder="Par" min="3" max="6"></th>`;
+    html += `<th>H${h}</th>`;
   }
   html += `</tr>`;
 
@@ -101,12 +100,6 @@ function startRound(holes) {
 }
 
 async function submitRoundScores(holes) {
-  const pars = [];
-  for (let h = 1; h <= holes; h++) {
-    const par = document.getElementById(`par-${h}`).value || 4;
-    pars.push(par);
-  }
-
   for (const pid of selectedPlayers) {
     const scores = [];
     for (let h = 1; h <= holes; h++) {
@@ -119,7 +112,6 @@ async function submitRoundScores(holes) {
         action: 'submitScores',
         playerId: pid,
         roundId: currentRound,
-        pars,
         scores
       })
     });

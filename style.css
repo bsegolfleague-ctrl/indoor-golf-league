@@ -1,16 +1,10 @@
 :root {
-  --primary: #2a9d8f;
-  --primary-dark: #1d7169;
-  --accent: #e9c46a;
-  --bg: #f4f6f8;
+  --primary: #1e3a8a;
+  --secondary: #3b82f6;
+  --accent: #2563eb;
+  --bg: #f9fafb;
   --card-bg: #ffffff;
-  --text: #2d2d2d;
-  --radius: 14px;
-  --shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
-}
-
-* {
-  box-sizing: border-box;
+  --text: #111827;
 }
 
 body {
@@ -18,67 +12,58 @@ body {
   font-family: "Inter", "Segoe UI", sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.5;
 }
 
 header {
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-  color: #fff;
-  padding: 1.5rem;
+  background: var(--primary);
+  color: white;
+  padding: 1.2rem;
   text-align: center;
-  font-size: 1.8rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 main {
   max-width: 900px;
   margin: 2rem auto;
-  padding: 0 1.2rem;
+  padding: 0 1rem;
 }
 
 h1, h2, h3 {
-  margin: 0.8rem 0;
-  font-weight: 600;
+  margin: 0.5rem 0;
 }
 
-button,
-input,
-select {
+button, input, select {
   width: 100%;
-  padding: 0.7rem 1rem;
+  padding: 0.6rem;
   margin: 0.4rem 0;
-  border-radius: var(--radius);
+  border-radius: 10px;
   border: 1px solid #ccc;
   font-size: 1rem;
-  font-family: inherit;
 }
 
 button {
-  background: var(--primary);
+  background: var(--secondary);
   color: white;
   border: none;
-  cursor: pointer;
   font-weight: 600;
-  transition: all 0.2s ease;
+  transition: background 0.3s;
 }
 
 button:hover {
-  background: var(--primary-dark);
-  transform: translateY(-1px);
+  background: var(--accent);
 }
 
 .card {
   background: var(--card-bg);
-  border-radius: var(--radius);
+  border-radius: 16px;
   padding: 1.2rem;
   margin: 1.2rem 0;
-  box-shadow: var(--shadow);
-  transition: box-shadow 0.2s ease;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
 }
 
-.card:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+.hidden {
+  display: none;
 }
 
 .actions {
@@ -91,61 +76,32 @@ button:hover {
   width: 100%;
   border-collapse: collapse;
   margin-top: 1rem;
-  border-radius: var(--radius);
-  overflow: hidden;
 }
 
-#leaderboard-content th,
-#leaderboard-content td {
-  padding: 0.75rem;
+#leaderboard-content th, #leaderboard-content td {
+  padding: 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
   text-align: center;
-  border-bottom: 1px solid #eee;
-}
-
-#leaderboard-content th {
-  background: var(--primary);
-  color: white;
-  font-weight: 600;
 }
 
 .modal {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
+  background: rgba(0,0,0,0.5);
+  display: flex; justify-content: center; align-items: center;
 }
 
 .modal-content {
   background: white;
-  border-radius: var(--radius);
+  border-radius: 16px;
   padding: 1.5rem;
   max-width: 500px;
   width: 90%;
-  box-shadow: var(--shadow);
-  animation: fadeIn 0.25s ease;
 }
 
 .close {
   float: right;
-  font-size: 1.6rem;
-  font-weight: bold;
-  color: #555;
+  font-size: 1.5rem;
   cursor: pointer;
-}
-
-.close:hover {
-  color: var(--primary);
-}
-
-.hidden {
-  display: none;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.96); }
-  to { opacity: 1; transform: scale(1); }
 }

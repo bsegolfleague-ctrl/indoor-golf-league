@@ -12,31 +12,20 @@
   </header>
 
   <main>
-    <!-- Dashboard -->
-    <section id="dashboard">
-      <div class="card">
-        <h2>League Dashboard</h2>
-        <div class="actions">
-          <button onclick="showCreateRound()">Create Round</button>
-          <button onclick="showAddPlayer()">Add Player</button>
-        </div>
+    <section class="card">
+      <h2>League Dashboard</h2>
+      <div class="actions">
+        <button onclick="showCreateRound()">Create Round</button>
+        <button onclick="showAddPlayer()">Add Player</button>
       </div>
+    </section>
 
-      <div class="card" id="leaderboard">
-        <h3>Leaderboard</h3>
-        <div id="leaderboard-content">Loading...</div>
-      </div>
+    <section class="card" id="leaderboard">
+      <h3>Leaderboard</h3>
+      <div id="leaderboard-content">Loading...</div>
     </section>
   </main>
 
-  <!-- Modal -->
   <div id="modal" class="modal hidden">
     <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <div id="modal-body"></div>
-    </div>
-  </div>
-
-  <script src="app.js"></script>
-</body>
-</html>
+      <span class="close" onclick="closeModal()">&times;</spa

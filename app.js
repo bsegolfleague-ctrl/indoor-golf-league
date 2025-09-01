@@ -1,4 +1,4 @@
-const API_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+const API_URL = 'https://script.google.com/macros/s/AKfycbxtWOz2e4CgpBCULGxW4mVs2ErXyGk2WcmayNRjCu2Lzx3S8zZ8CuDO-KDdgYy2Py8I/exec';
 let currentRound = null;
 let selectedPlayers = [];
 

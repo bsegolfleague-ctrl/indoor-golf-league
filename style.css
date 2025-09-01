@@ -1,0 +1,151 @@
+:root {
+  --primary: #2a9d8f;
+  --primary-dark: #1d7169;
+  --accent: #e9c46a;
+  --bg: #f4f6f8;
+  --card-bg: #ffffff;
+  --text: #2d2d2d;
+  --radius: 14px;
+  --shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #fff;
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+main {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1.2rem;
+}
+
+h1, h2, h3 {
+  margin: 0.8rem 0;
+  font-weight: 600;
+}
+
+button,
+input,
+select {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  margin: 0.4rem 0;
+  border-radius: var(--radius);
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 1.2rem;
+  margin: 1.2rem 0;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+#leaderboard-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+#leaderboard-content th,
+#leaderboard-content td {
+  padding: 0.75rem;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+#leaderboard-content th {
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+}
+
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: white;
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: var(--shadow);
+  animation: fadeIn 0.25s ease;
+}
+
+.close {
+  float: right;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #555;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: var(--primary);
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
